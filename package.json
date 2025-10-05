@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "db:start": "docker compose --env-file .env.local up -d",
+    "db:stop": "docker compose --env-file .env.local down"
   },
   "dependencies": {
     "react": "^18",
