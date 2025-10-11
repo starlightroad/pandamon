@@ -1,15 +1,31 @@
 "use client";
 
-import { CircleUserRoundIcon, KeyRoundIcon } from "lucide-react";
+import { useState } from "react";
 
-import { Box, Button, Flex, Text, TextField } from "@radix-ui/themes";
+import { useFormState } from "react-dom";
+
+import { Flex, Text, TextField } from "@radix-ui/themes";
+
+import { CircleUserRoundIcon, KeyRoundIcon } from "lucide-react";
 
 import formStyles from "@/public/styles/form.module.css";
 
+import {
+  authenticate,
+  ErrorCallout,
+  SubmitButton,
+} from "@/app/_features/authentication";
+
 export default function SignUpForm() {
+  const [errorMessage, signUpAction] = useFormState(authenticate, undefined);
+
+  const [emailValue, setEmailValue] = useState("");
+  const [passwordValue, setPasswordValue] = useState("");
+
   return (
     <Flex direction="column" gap="3" asChild>
-      <form>
+      <form action={signUpAction}>
+        {errorMessage && <ErrorCallout message={errorMessage} />}
         <Flex direction="column">
           <Text as="label" htmlFor="email" className={formStyles["sr-only"]}>
             Email
@@ -21,6 +37,9 @@ export default function SignUpForm() {
             placeholder="Email"
             size="3"
             radius="large"
+            value={emailValue}
+            onChange={(e) => setEmailValue(e.target.value)}
+            required
           >
             <TextField.Slot>
               <CircleUserRoundIcon size={15} />
@@ -38,24 +57,19 @@ export default function SignUpForm() {
             placeholder="Password"
             size="3"
             radius="large"
+            value={passwordValue}
+            onChange={(e) => setPasswordValue(e.target.value)}
+            required
           >
             <TextField.Slot>
               <KeyRoundIcon size={15} />
             </TextField.Slot>
           </TextField.Root>
         </Flex>
-        <ActionButton />
+        <SubmitButton disabled={!emailValue || !passwordValue}>
+          Sign Up
+        </SubmitButton>
       </form>
     </Flex>
-  );
-}
-
-function ActionButton() {
-  return (
-    <Box width="100%" asChild>
-      <Button size="3" radius="large" disabled>
-        Sign Up
-      </Button>
-    </Box>
   );
 }

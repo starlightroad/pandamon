@@ -1,5 +1,7 @@
 import { betterAuth } from "better-auth";
 
+import { nextCookies } from "better-auth/next-js";
+
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
 
 import { db } from "@/db";
@@ -11,4 +13,17 @@ export const auth = betterAuth({
   emailAndPassword: {
     enabled: true,
   },
+  user: {
+    modelName: "usersTable",
+  },
+  session: {
+    modelName: "sessionsTable",
+  },
+  account: {
+    modelName: "accountsTable",
+  },
+  verification: {
+    modelName: "verificationsTable",
+  },
+  plugins: [nextCookies()],
 });
