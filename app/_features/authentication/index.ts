@@ -6,9 +6,9 @@ export {
 
 export { FormSchema } from "./lib/definitions";
 
-export { authenticate } from "./lib/actions";
+export { authenticate, signInUser } from "./lib/actions";
 
-export { default as SignUpForm } from "./components/sign-up-form";
+export { default as AuthForm } from "./components/auth-form";
 
 export { default as ErrorCallout } from "./components/error-callout";
 
