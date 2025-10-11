@@ -2,6 +2,8 @@
 
 import { ZodError } from "zod";
 
+import { redirect } from "next/navigation";
+
 import { auth } from "@/auth";
 
 import { AUTH_ERROR, FormSchema } from "@/app/_features/authentication";
@@ -42,4 +44,6 @@ export const authenticate = async (_state: unknown, data: FormData) => {
 
     return AUTH_ERROR.SIGN_UP_FAILED;
   }
+
+  redirect("/dashboard/monitors");
 };
