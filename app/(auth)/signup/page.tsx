@@ -20,7 +20,7 @@ export default async function SignUp() {
           Already have an account?&nbsp;
           <Link underline="hover" color="blue" asChild>
             <Flex display="inline-flex" align="center" gap="1" asChild>
-              <NextLink href="#">
+              <NextLink href="/signin">
                 Sign in <ArrowUpRightIcon size={15} />
               </NextLink>
             </Flex>
