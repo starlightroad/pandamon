@@ -10,6 +10,10 @@ export default function middleware(request: NextRequest) {
   if (sessionCookie && !isDashboard) {
     return NextResponse.redirect(new URL("/dashboard", request.url));
   }
+
+  if (!sessionCookie && isDashboard) {
+    return NextResponse.redirect(new URL("/signin", request.url));
+  }
 }
 
 export const config = {
