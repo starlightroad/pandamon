@@ -4,7 +4,7 @@ import { useState } from "react";
 
 import { useFormState } from "react-dom";
 
-import { Flex, IconButton, Text, TextField } from "@radix-ui/themes";
+import { Flex, IconButton, Text, TextField, Tooltip } from "@radix-ui/themes";
 
 import {
   CircleUserRoundIcon,
@@ -85,19 +85,24 @@ export default function AuthForm({ type, actionHandler }: Props) {
               <KeyRoundIcon size={15} />
             </TextField.Slot>
             <TextField.Slot>
-              <IconButton
-                type="button"
-                variant="ghost"
-                color="gray"
-                size="1"
-                onClick={() => setShowPassword((prevState) => !prevState)}
+              <Tooltip
+                content={showPassword ? "Hide password" : "Show password"}
               >
-                {showPassword ? (
-                  <EyeIcon size={15} />
-                ) : (
-                  <EyeOffIcon size={15} />
-                )}
-              </IconButton>
+                <IconButton
+                  type="button"
+                  variant="ghost"
+                  color="gray"
+                  size="1"
+                  aria-label={showPassword ? "Hide password" : "Show password"}
+                  onClick={() => setShowPassword((prevState) => !prevState)}
+                >
+                  {showPassword ? (
+                    <EyeIcon size={15} />
+                  ) : (
+                    <EyeOffIcon size={15} />
+                  )}
+                </IconButton>
+              </Tooltip>
             </TextField.Slot>
           </TextField.Root>
         </Flex>
