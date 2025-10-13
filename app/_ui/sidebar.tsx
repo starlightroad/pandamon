@@ -43,6 +43,10 @@ export default function Sidebar() {
     <Box
       px="3"
       width={sidebarWidth}
+      display={{
+        initial: "none",
+        sm: "block",
+      }}
       style={{ borderRight: "1px solid var(--gray-4)" }}
     >
       <UserMenu />
