@@ -1,4 +1,4 @@
-import { auth } from "@/app/_features/authentication";
+import { auth } from "@/auth";
 
 import { toNextJsHandler } from "better-auth/next-js";
 
