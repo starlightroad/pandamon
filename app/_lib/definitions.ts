@@ -6,3 +6,9 @@ export type SidebarItem = {
   href: string;
   icon: LucideIcon;
 };
+
+export type ThemeItem = {
+  id: string;
+  label: "system" | "light" | "dark";
+  icon: LucideIcon;
+};

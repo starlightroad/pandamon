@@ -12,6 +12,8 @@ import { SIDEBAR_WIDTH } from "@/app/_lib/constants";
 
 import type { SidebarItem } from "@/app/_lib/definitions";
 
+import UserMenu from "@/app/_ui/user-menu";
+
 const sidebarItems: SidebarItem[] = [
   {
     id: "sidebar-item-0",
@@ -35,13 +37,15 @@ const sidebarItems: SidebarItem[] = [
 
 export default function Sidebar() {
   const pathname = usePathname();
+  const sidebarWidth = `${SIDEBAR_WIDTH}px`;
 
   return (
     <Box
       px="3"
-      width={`${SIDEBAR_WIDTH}px`}
+      width={sidebarWidth}
       style={{ borderRight: "1px solid var(--gray-4)" }}
     >
+      <UserMenu />
       <Flex direction="column" gap="1" py="3" asChild>
         <ul
           style={{
