@@ -4,7 +4,7 @@ import "../public/styles/globals.css";
 
 import "@radix-ui/themes/styles.css";
 
-import { Theme } from "@radix-ui/themes";
+import { ThemeProvider } from "@/app/_features/dark-mode";
 
 const geistSans = localFont({
   src: "../public/fonts/GeistVF.woff",
@@ -31,9 +31,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <Theme accentColor="amber">{children}</Theme>
+        <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
   );
