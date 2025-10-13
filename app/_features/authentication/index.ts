@@ -8,7 +8,7 @@ export { client } from "./lib/client";
 
 export { FormSchema } from "./lib/definitions";
 
-export { authenticate, signInUser } from "./lib/actions";
+export { authenticate, signInUser, signOutUser } from "./lib/actions";
 
 export { default as AuthForm } from "./components/auth-form";
 

@@ -30,7 +30,7 @@ import { capitalize } from "@/app/_lib/utils";
 
 import type { ThemeItem } from "@/app/_lib/definitions";
 
-import { client } from "@/app/_features/authentication";
+import { client, signOutUser } from "@/app/_features/authentication";
 
 const themeItems: ThemeItem[] = [
   {
@@ -57,6 +57,10 @@ export default function UserMenu() {
 
   const userFullName = data?.user.name || data?.user.email || "";
   const borderRadius = "var(--radius-5)";
+
+  const onSignOut = async () => {
+    await signOutUser();
+  };
 
   return (
     <Box py="3">
@@ -127,7 +131,7 @@ export default function UserMenu() {
               marginRight: "-8px",
             }}
           />
-          <DropdownMenu.Item>
+          <DropdownMenu.Item onClick={onSignOut}>
             <LogOutIcon size={15} />
             Sign Out
           </DropdownMenu.Item>

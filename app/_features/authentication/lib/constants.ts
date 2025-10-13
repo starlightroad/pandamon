@@ -8,5 +8,6 @@ export const AUTH_ERROR = {
   PASSWORD_TOO_LONG: "Password must be up to 72 characters long.",
   SIGN_IN_FAILED: "Invalid email or password.",
   SIGN_UP_FAILED: "Unable to create a new account.",
+  SIGN_OUT_FAILED: "Unable to sign you out. Please try again later.",
   UNKNOWN_ERROR: "Something went wrong.",
 };
