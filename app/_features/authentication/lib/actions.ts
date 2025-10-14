@@ -2,6 +2,8 @@
 
 import { ZodError } from "zod";
 
+import { headers } from "next/headers";
+
 import { redirect } from "next/navigation";
 
 import { auth } from "@/auth";
@@ -89,4 +91,25 @@ export const signInUser = async (_state: unknown, data: FormData) => {
   }
 
   return redirectUserToDashboard();
+};
+
+export const signOutUser = async () => {
+  try {
+    const response = await auth.api.signOut({
+      headers: headers(),
+      asResponse: true,
+    });
+
+    if (!response.ok) {
+      throw new Error();
+    }
+
+    await response.json();
+  } catch (error) {
+    console.error(error);
+
+    return AUTH_ERROR.SIGN_OUT_FAILED;
+  }
+
+  redirect("/signin");
 };
