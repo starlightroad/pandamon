@@ -6,9 +6,18 @@ import { useEffect, useState } from "react";
 
 import { LaptopMinimalIcon, MoonIcon, SunIcon } from "lucide-react";
 
-import { Badge, Flex, IconButton, Skeleton } from "@radix-ui/themes";
+import {
+  Badge,
+  Box,
+  Flex,
+  IconButton,
+  Skeleton,
+  Tooltip,
+} from "@radix-ui/themes";
 
 import type { ThemeItem } from "@/app/_lib/definitions";
+
+import { capitalize } from "@/app/_lib/utils";
 
 const themeItems: ThemeItem[] = [
   {
@@ -44,22 +53,29 @@ export default function ThemeSwitcher() {
     <Flex display="inline-flex" py="2" gap="2" asChild>
       <Badge variant="surface" radius="full" size="1" color="gray">
         {themeItems.map((themeItem) => {
+          const label = `${capitalize(themeItem.label)} theme`;
+          const ariaLabel = `Set theme to ${themeItem.label}`;
+
           return (
-            <IconButton
-              type="button"
-              key={themeItem.id}
-              size="1"
-              radius="full"
-              color="gray"
-              variant={theme === themeItem.label ? "soft" : "ghost"}
-              highContrast
-              style={{
-                margin: 0,
-              }}
-              onClick={() => setTheme(themeItem.label)}
-            >
-              <themeItem.icon size={15} />
-            </IconButton>
+            <Box key={themeItem.id}>
+              <Tooltip content={label}>
+                <IconButton
+                  type="button"
+                  size="1"
+                  radius="full"
+                  color="gray"
+                  variant={theme === themeItem.label ? "soft" : "ghost"}
+                  highContrast
+                  style={{
+                    margin: 0,
+                  }}
+                  onClick={() => setTheme(themeItem.label)}
+                  aria-label={ariaLabel}
+                >
+                  <themeItem.icon size={15} />
+                </IconButton>
+              </Tooltip>
+            </Box>
           );
         })}
       </Badge>
