@@ -4,8 +4,6 @@ import { useTheme } from "next-themes";
 
 import { useEffect, useState } from "react";
 
-import { LaptopMinimalIcon, MoonIcon, SunIcon } from "lucide-react";
-
 import {
   Badge,
   Box,
@@ -15,27 +13,11 @@ import {
   Tooltip,
 } from "@radix-ui/themes";
 
-import type { ThemeItem } from "@/app/_lib/definitions";
-
 import { capitalize } from "@/app/_lib/utils";
 
-const themeItems: ThemeItem[] = [
-  {
-    id: "theme-item-0",
-    label: "system",
-    icon: LaptopMinimalIcon,
-  },
-  {
-    id: "theme-item-1",
-    label: "light",
-    icon: SunIcon,
-  },
-  {
-    id: "theme-item-2",
-    label: "dark",
-    icon: MoonIcon,
-  },
-];
+import { getThemeItems } from "@/app/_data/theme-item";
+
+const themeItems = getThemeItems();
 
 export default function ThemeSwitcher() {
   const { theme, setTheme } = useTheme();
