@@ -15,6 +15,8 @@ import { TextAlignJustifyIcon as MenuIcon, XIcon } from "lucide-react";
 
 import { HEADER_HEIGHT } from "@/app/_lib/constants";
 
+import MobileNavigation from "@/app/_ui/mobile-navigation";
+
 function NavbarContainer({ children }: { children: React.ReactNode }) {
   return (
     <Box position="sticky" top="0">
@@ -25,8 +27,10 @@ function NavbarContainer({ children }: { children: React.ReactNode }) {
 
 export default function Navbar() {
   const headerHeight = `${HEADER_HEIGHT}px`;
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const tooltipContent = isMenuOpen ? "Close navigation" : "Open navigation";
+  const [isNavigationOpen, setIsNavigationOpen] = useState(false);
+  const tooltipContent = isNavigationOpen
+    ? "Close navigation"
+    : "Open navigation";
 
   return (
     <NavbarContainer>
@@ -50,7 +54,7 @@ export default function Navbar() {
                 <IconButton
                   variant="ghost"
                   color="gray"
-                  onClick={() => setIsMenuOpen((prevState) => !prevState)}
+                  onClick={() => setIsNavigationOpen((prevState) => !prevState)}
                   style={{
                     margin: 0,
                     width: "20px",
@@ -58,7 +62,11 @@ export default function Navbar() {
                   }}
                   aria-label={tooltipContent}
                 >
-                  {isMenuOpen ? <XIcon size={15} /> : <MenuIcon size={15} />}
+                  {isNavigationOpen ? (
+                    <XIcon size={15} />
+                  ) : (
+                    <MenuIcon size={15} />
+                  )}
                 </IconButton>
               </Tooltip>
             </Box>
@@ -71,6 +79,7 @@ export default function Navbar() {
           backgroundColor: "var(--gray-4)",
         }}
       />
+      {isNavigationOpen && <MobileNavigation />}
     </NavbarContainer>
   );
 }
