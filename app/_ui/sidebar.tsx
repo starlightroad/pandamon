@@ -41,16 +41,17 @@ export default function Sidebar() {
 
   return (
     <Box
-      px="3"
       width={sidebarWidth}
       display={{
         initial: "none",
         sm: "block",
       }}
-      style={{ borderRight: "1px solid var(--gray-4)" }}
+      style={{
+        borderRight: "1px solid var(--gray-4)",
+      }}
     >
       <UserMenu />
-      <Flex direction="column" gap="1" py="3" asChild>
+      <Flex direction="column" gap="1" p="2" asChild>
         <ul
           style={{
             listStyleType: "none",
