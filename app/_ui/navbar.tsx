@@ -9,11 +9,13 @@ import {
   Tooltip,
 } from "@radix-ui/themes";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { TextAlignJustifyIcon as MenuIcon, XIcon } from "lucide-react";
 
 import { HEADER_HEIGHT } from "@/app/_lib/constants";
+
+import useObserver from "@/app/_hooks/use-observer";
 
 import MobileNavigation from "@/app/_ui/mobile-navigation";
 
@@ -31,6 +33,14 @@ export default function Navbar() {
   const tooltipContent = isNavigationOpen
     ? "Close navigation"
     : "Open navigation";
+
+  const [containerRef, isVisible] = useObserver();
+
+  useEffect(() => {
+    if (!isVisible && isNavigationOpen) {
+      setIsNavigationOpen(false);
+    }
+  }, [isNavigationOpen, isVisible]);
 
   return (
     <NavbarContainer>
@@ -61,6 +71,7 @@ export default function Navbar() {
                     height: "20px",
                   }}
                   aria-label={tooltipContent}
+                  ref={containerRef}
                 >
                   {isNavigationOpen ? (
                     <XIcon size={15} />
