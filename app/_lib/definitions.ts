@@ -1,5 +1,12 @@
 import type { LucideIcon } from "lucide-react";
 
+export type NavItem = {
+  id: string;
+  label: string;
+  href: string;
+  icon: LucideIcon;
+};
+
 export type SidebarItem = {
   id: string;
   label: string;
@@ -7,8 +14,6 @@ export type SidebarItem = {
   icon: LucideIcon;
 };
 
-export type ThemeItem = {
-  id: string;
+export type ThemeItem = Omit<NavItem, "label" | "href"> & {
   label: "system" | "light" | "dark";
-  icon: LucideIcon;
 };
