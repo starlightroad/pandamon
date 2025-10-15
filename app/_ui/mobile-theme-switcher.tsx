@@ -8,7 +8,9 @@ import { LaptopMinimalIcon, MoonIcon, SunIcon } from "lucide-react";
 
 import { Badge, Flex, IconButton, Skeleton } from "@radix-ui/themes";
 
-const themeItems = [
+import type { ThemeItem } from "@/app/_lib/definitions";
+
+const themeItems: ThemeItem[] = [
   {
     id: "theme-item-0",
     label: "system",
