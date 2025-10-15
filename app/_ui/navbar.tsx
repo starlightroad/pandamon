@@ -1,0 +1,76 @@
+"use client";
+
+import {
+  Box,
+  Container,
+  Flex,
+  IconButton,
+  Separator,
+  Tooltip,
+} from "@radix-ui/themes";
+
+import { useState } from "react";
+
+import { TextAlignJustifyIcon as MenuIcon, XIcon } from "lucide-react";
+
+import { HEADER_HEIGHT } from "@/app/_lib/constants";
+
+function NavbarContainer({ children }: { children: React.ReactNode }) {
+  return (
+    <Box position="sticky" top="0">
+      {children}
+    </Box>
+  );
+}
+
+export default function Navbar() {
+  const headerHeight = `${HEADER_HEIGHT}px`;
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const tooltipContent = isMenuOpen ? "Close navigation" : "Open navigation";
+
+  return (
+    <NavbarContainer>
+      <Flex
+        width="100%"
+        height={headerHeight}
+        align="center"
+        px="4"
+        style={{
+          backgroundColor: "var(--color-background)",
+        }}
+      >
+        <Container>
+          <Flex justify="end">
+            <Box
+              display={{
+                sm: "none",
+              }}
+            >
+              <Tooltip content={tooltipContent}>
+                <IconButton
+                  variant="ghost"
+                  color="gray"
+                  onClick={() => setIsMenuOpen((prevState) => !prevState)}
+                  style={{
+                    margin: 0,
+                    width: "20px",
+                    height: "20px",
+                  }}
+                  aria-label={tooltipContent}
+                >
+                  {isMenuOpen ? <XIcon size={15} /> : <MenuIcon size={15} />}
+                </IconButton>
+              </Tooltip>
+            </Box>
+          </Flex>
+        </Container>
+      </Flex>
+      <Separator
+        size="4"
+        style={{
+          backgroundColor: "var(--gray-4)",
+        }}
+      />
+    </NavbarContainer>
+  );
+}
