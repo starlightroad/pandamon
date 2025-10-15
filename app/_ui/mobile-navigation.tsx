@@ -6,41 +6,22 @@ import { usePathname } from "next/navigation";
 
 import { Box, Button, Flex, Separator, Text } from "@radix-ui/themes";
 
-import { ChartPieIcon, HexagonIcon, TriangleAlertIcon } from "lucide-react";
-
 import type { NavItem } from "@/app/_lib/definitions";
+
+import { getNavigationItems } from "@/app/_data/nav-item";
 
 import ThemeSwitcher from "@/app/_ui/mobile-theme-switcher";
 
-const sidebarItems: NavItem[] = [
-  {
-    id: "sidebar-item-0",
-    label: "Monitors",
-    href: "/dashboard/monitors",
-    icon: HexagonIcon,
-  },
-  {
-    id: "sidebar-item-1",
-    label: "Incidents",
-    href: "#",
-    icon: TriangleAlertIcon,
-  },
-  {
-    id: "sidebar-item-2",
-    label: "Analytics",
-    href: "#",
-    icon: ChartPieIcon,
-  },
-];
+const mobileItems = getNavigationItems();
 
-const mobileMenuItems: Omit<NavItem, "icon">[] = [
+const subMobileItems: Omit<NavItem, "icon">[] = [
   {
-    id: "mobile-menu-item-3",
+    id: "sub-mobile-nav-item-0",
     label: "Account",
     href: "/account",
   },
   {
-    id: "mobile-menu-item-4",
+    id: "sub-mobile-nav-item-1",
     label: "Settings",
     href: "/settings",
   },
@@ -68,9 +49,9 @@ export default function MobileNavigation() {
             listStyleType: "none",
           }}
         >
-          {sidebarItems.map((sidebarItem) => {
-            const keyId = sidebarItem.id.replace("sidebar", "mobile-menu");
-            const activeItem = pathname.startsWith(sidebarItem.href);
+          {mobileItems.map((mobileItem) => {
+            const keyId = mobileItem.id.replace("nav", "mobile-nav");
+            const activeItem = pathname.startsWith(mobileItem.href);
             const backgroundColor = activeItem ? "var(--accent-a3)" : undefined;
             const borderRadius = "var(--radius-5)";
 
@@ -90,8 +71,8 @@ export default function MobileNavigation() {
                     size="3"
                     asChild
                   >
-                    <NextLink href={sidebarItem.href}>
-                      <Text weight="medium">{sidebarItem.label}</Text>
+                    <NextLink href={mobileItem.href}>
+                      <Text weight="medium">{mobileItem.label}</Text>
                     </NextLink>
                   </Button>
                 </Flex>
@@ -113,14 +94,13 @@ export default function MobileNavigation() {
             listStyleType: "none",
           }}
         >
-          {mobileMenuItems.map((sidebarItem) => {
-            const key = sidebarItem.id.replace("sidebar", "mobile-menu");
-            const activeItem = pathname.startsWith(sidebarItem.href);
+          {subMobileItems.map((subMobileItem) => {
+            const activeItem = pathname.startsWith(subMobileItem.href);
             const backgroundColor = activeItem ? "var(--accent-a3)" : undefined;
             const borderRadius = "var(--radius-5)";
 
             return (
-              <li key={key}>
+              <li key={subMobileItem.id}>
                 <Flex justify="start" px="3" py="2" width="100%" asChild>
                   <Button
                     type="button"
@@ -135,8 +115,8 @@ export default function MobileNavigation() {
                     size="3"
                     asChild
                   >
-                    <NextLink href={sidebarItem.href}>
-                      <Text weight="medium">{sidebarItem.label}</Text>
+                    <NextLink href={subMobileItem.href}>
+                      <Text weight="medium">{subMobileItem.label}</Text>
                     </NextLink>
                   </Button>
                 </Flex>
