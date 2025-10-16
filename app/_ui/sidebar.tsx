@@ -20,7 +20,8 @@ export default function Sidebar() {
 
   return (
     <Box
-      width={sidebarWidth}
+      width="100%"
+      maxWidth={sidebarWidth}
       display={{
         initial: "none",
         sm: "block",
