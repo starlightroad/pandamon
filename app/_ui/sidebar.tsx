@@ -6,34 +6,13 @@ import { usePathname } from "next/navigation";
 
 import { Box, Button, Flex, Text } from "@radix-ui/themes";
 
-import { ChartPieIcon, HexagonIcon, TriangleAlertIcon } from "lucide-react";
-
 import { SIDEBAR_WIDTH } from "@/app/_lib/constants";
-
-import type { SidebarItem } from "@/app/_lib/definitions";
 
 import UserMenu from "@/app/_ui/user-menu";
 
-const sidebarItems: SidebarItem[] = [
-  {
-    id: "sidebar-item-0",
-    label: "Monitors",
-    href: "/dashboard/monitors",
-    icon: HexagonIcon,
-  },
-  {
-    id: "sidebar-item-1",
-    label: "Incidents",
-    href: "#",
-    icon: TriangleAlertIcon,
-  },
-  {
-    id: "sidebar-item-2",
-    label: "Analytics",
-    href: "#",
-    icon: ChartPieIcon,
-  },
-];
+import { getNavigationItems } from "@/app/_data/nav-item";
+
+const sidebarItems = getNavigationItems();
 
 export default function Sidebar() {
   const pathname = usePathname();
