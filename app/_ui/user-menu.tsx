@@ -15,12 +15,9 @@ import {
   ChevronDown,
   ChevronUpIcon,
   CircleUserRoundIcon,
-  LaptopMinimalIcon,
   LogOutIcon,
-  MoonIcon,
   PaletteIcon,
   SettingsIcon,
-  SunIcon,
 } from "lucide-react";
 
 import { useState } from "react";
@@ -29,27 +26,11 @@ import { useTheme } from "next-themes";
 
 import { capitalize } from "@/app/_lib/utils";
 
-import type { ThemeItem } from "@/app/_lib/definitions";
+import { getThemeItems } from "@/app/_data/theme-item";
 
 import { client, signOutUser } from "@/app/_features/authentication";
 
-const themeItems: ThemeItem[] = [
-  {
-    id: "theme-item-0",
-    label: "system",
-    icon: LaptopMinimalIcon,
-  },
-  {
-    id: "theme-item-1",
-    label: "light",
-    icon: SunIcon,
-  },
-  {
-    id: "theme-item-2",
-    label: "dark",
-    icon: MoonIcon,
-  },
-];
+const themeItems = getThemeItems();
 
 export default function UserMenu() {
   const [isOpen, setIsOpen] = useState(false);
