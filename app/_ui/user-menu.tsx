@@ -34,7 +34,7 @@ const themeItems = getThemeItems();
 
 export default function UserMenu() {
   const [isOpen, setIsOpen] = useState(false);
-  const { resolvedTheme, setTheme } = useTheme();
+  const { theme, setTheme } = useTheme();
   const { data, isPending } = client.useSession();
 
   const userFullName = data?.user.name || data?.user.email || "";
@@ -98,7 +98,7 @@ export default function UserMenu() {
                   return (
                     <DropdownMenu.CheckboxItem
                       key={themeItem.id}
-                      checked={themeItem.label === resolvedTheme}
+                      checked={themeItem.label === theme}
                       onCheckedChange={() => setTheme(themeItem.label)}
                     >
                       <themeItem.icon size={15} />
