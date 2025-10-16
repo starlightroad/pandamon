@@ -7,13 +7,6 @@ export type NavItem = {
   icon: LucideIcon;
 };
 
-export type SidebarItem = {
-  id: string;
-  label: string;
-  href: string;
-  icon: LucideIcon;
-};
-
 export type ThemeItem = Omit<NavItem, "label" | "href"> & {
   label: "system" | "light" | "dark";
 };
